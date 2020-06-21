@@ -1,0 +1,44 @@
+eureka:
+  instance:
+    #EurekaClient向EurekaServer发送心跳的间隔时间（默认为30s，开发环境建议设置较小值）
+    lease-renewal-interval-in-seconds: 1
+    #EurekaServer在收到最后一次心跳后的等待时间，超过则剔除EurekaClient（默认为90s，开发环境建议设置较小值）
+    lease-expiration-duration-in-seconds: 2
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8081/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+server:
+  port: 8080
+spring:
+  application:
+    name: zuul-service
+  datasource:
+    url: jdbc:mysql://192.168.137.212:3306/security
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      connection-test-query: select 1
+      username: root
+      password: root
+      read-only: false
+  session:
+    store-type: jdbc
+    jdbc:
+      cleanup-cron: 0 */30 * * * ?
+
+#网关配置
+zuul:
+  prefix: /api
+  #配置Header过滤，为空表示不过滤
+  sensitive-headers:
+  routes:
+    consumer-service:
+      path: /consumer/**
+      service-id: consumer-service
+      stripPrefix: false
+    provider-service:
+      path: /provider/**
+      service-id: provider-service
+      stripPrefix: false

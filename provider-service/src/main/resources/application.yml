@@ -1,0 +1,19 @@
+eureka:
+  instance:
+    #EurekaClient向EurekaServer发送心跳的间隔时间（默认为30s，开发环境建议设置较小值）
+    lease-renewal-interval-in-seconds: 1
+    #EurekaServer在收到最后一次心跳后的等待时间，超过则剔除EurekaClient（默认为90s，开发环境建议设置较小值）
+    lease-expiration-duration-in-seconds: 2
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8081/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+server:
+  port: 8082
+spring:
+  mvc:
+    servlet:
+      path: /provider
+  application:
+    name: provider-service

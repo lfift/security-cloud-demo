@@ -1,0 +1,21 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    #注册地址
+    service-url:
+      defaultZone: http://127.0.0.1:${server.port}/eureka/
+    #是否需要将自己注册到自己的注册中心默认为true，集群需要开启
+    register-with-eureka: true
+    #是否需要去检索服务信息
+    fetch-registry: true
+  server:
+    #开启自我保护机制（默认为开启，开发环境建议关闭）
+    enable-self-preservation: false
+    #剔除服务的间隔时间
+    eviction-interval-timer-in-ms: 2000
+server:
+  port: 8081
+spring:
+  application:
+    name: eureka-service
