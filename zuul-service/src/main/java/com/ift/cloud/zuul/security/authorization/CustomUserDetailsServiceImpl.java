@@ -7,10 +7,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
-import javax.servlet.http.HttpSession;
 
 /**
  * 身份认证
@@ -27,14 +23,8 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    ServletRequestAttributes requestAttributes =
-            (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        HttpSession session = requestAttributes.getRequest().getSession();
-        session.setAttribute("username", username);
-        session.setAttribute("ownOrgCode", "500905");
         if ("admin".equals(username)) {
             return new User(username, passwordEncoder.encode("admin"),
                     true, true, true, true,

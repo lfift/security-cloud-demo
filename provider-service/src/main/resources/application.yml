@@ -12,8 +12,7 @@ eureka:
 server:
   port: 8082
 spring:
-  mvc:
-    servlet:
-      path: /provider
   application:
     name: provider-service
+  redis:
+    host: 120.79.87.61

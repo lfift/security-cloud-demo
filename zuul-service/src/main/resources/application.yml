@@ -11,22 +11,13 @@ eureka:
     register-with-eureka: true
 server:
   port: 8080
+  servlet:
+    context-path: /api
 spring:
   application:
     name: zuul-service
-  datasource:
-    url: jdbc:mysql://192.168.137.212:3306/security
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    type: com.zaxxer.hikari.HikariDataSource
-    hikari:
-      connection-test-query: select 1
-      username: root
-      password: root
-      read-only: false
-  session:
-    store-type: jdbc
-    jdbc:
-      cleanup-cron: 0 */30 * * * ?
+  redis:
+    host: 120.79.87.61
 
 #网关配置
 zuul:
@@ -37,8 +28,8 @@ zuul:
     consumer-service:
       path: /consumer/**
       service-id: consumer-service
-      stripPrefix: false
+#      stripPrefix: false
     provider-service:
       path: /provider/**
       service-id: provider-service
-      stripPrefix: false
+#      stripPrefix: false

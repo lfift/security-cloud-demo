@@ -80,7 +80,7 @@ public class SecurityConfig<S extends Session> extends WebSecurityConfigurerAdap
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/api/consumer/admin/**").hasRole("ADMIN")
-                .antMatchers("/api/consumer/user/**").hasRole("USER")
+                .antMatchers("/api/consumer/user/**").hasAnyRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling()

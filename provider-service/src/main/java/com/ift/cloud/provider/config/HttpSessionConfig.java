@@ -1,4 +1,4 @@
-package com.ift.cloud.zuul.security.session;
+package com.ift.cloud.provider.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
