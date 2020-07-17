@@ -21,7 +21,7 @@ spring:
 
 #网关配置
 zuul:
-  prefix: /api
+#  prefix: /api
   #配置Header过滤，为空表示不过滤
   sensitive-headers:
   routes:
