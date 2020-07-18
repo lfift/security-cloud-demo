@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.security.jackson2.SecurityJackson2Modules;
 import org.springframework.security.web.jackson2.WebJackson2Module;
 import org.springframework.security.web.jackson2.WebServletJackson2Module;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
@@ -40,6 +41,7 @@ public class HttpSessionConfig {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModules(new WebServletJackson2Module());
         objectMapper.registerModules(new WebJackson2Module());
-        return new GenericJackson2JsonRedisSerializer();
+        SecurityJackson2Modules.enableDefaultTyping(objectMapper);
+        return new GenericJackson2JsonRedisSerializer(objectMapper);
     }
 }
