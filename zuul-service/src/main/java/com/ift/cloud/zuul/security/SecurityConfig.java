@@ -87,6 +87,7 @@ public class SecurityConfig<S extends Session> extends WebSecurityConfigurerAdap
                 .accessDeniedHandler(accessDeniedHandler)
                 .authenticationEntryPoint(authenticationEntryPoint)
                 .and()
+
                 .formLogin()
                 .loginPage("/login.html")
                 .loginProcessingUrl("/login")
