@@ -42,6 +42,7 @@ public class HttpSessionConfig {
         objectMapper.registerModules(new WebServletJackson2Module());
         objectMapper.registerModules(new WebJackson2Module());
         SecurityJackson2Modules.enableDefaultTyping(objectMapper);
+
         return new GenericJackson2JsonRedisSerializer(objectMapper);
     }
 }
